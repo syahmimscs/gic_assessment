@@ -33,7 +33,7 @@ const EmployeeForm = () => {
   }, [cafes, location.search]);
 
   const fetchEmployeeDetails = (id) => {
-    axios.get(`http://localhost:5001/employee/${id}`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}:5001/employee/${id}`)
       .then(response => {
         const employee = response.data;
         setEmployeeId(employee.id);
@@ -49,7 +49,7 @@ const EmployeeForm = () => {
   };
 
   const fetchCafes = () => {
-    axios.get('http://localhost:5001/cafes')
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}:5001/cafes`)
       .then(response => {
         setCafes(response.data); // Assuming the response is an array of cafes
       })
@@ -103,7 +103,7 @@ const EmployeeForm = () => {
   };
 
   const handleUpdateEmployee = (data) => {
-    axios.put(`http://localhost:5001/employee/${employeeId}`, data)
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}:5001/employee/${employeeId}`, data)
       .then(() => {
         navigate({ to: '/employees' }); // Go back to the employees page after saving
       })
@@ -113,7 +113,7 @@ const EmployeeForm = () => {
   };
 
   const handleAddEmployee = (data) => {
-    axios.post('http://localhost:5001/employee', data)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}:5001/employee`, data)
       .then(() => {
         navigate({ to: '/employees' });
       })

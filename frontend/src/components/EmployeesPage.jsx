@@ -33,7 +33,7 @@ const EmployeesPage = () => {
   const fetchEmployees = () => {
     setIsLoading(true);
     axios
-      .get("http://localhost:5001/employees")
+      .get(`${process.env.REACT_APP_BACKEND_URL}:5001/employees`)
       .then((response) => {
         console.log("Employees fetched:", response.data);
         setAllEmployees(response.data); // Store all employees
@@ -82,7 +82,7 @@ const EmployeesPage = () => {
 
   const deleteEmployee = (id) => {
     axios
-      .delete(`http://localhost:5001/employee/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}:5001/employee/${id}`)
       .then(() => {
         setEmployees(employees.filter((employee) => employee.id !== id));
       })

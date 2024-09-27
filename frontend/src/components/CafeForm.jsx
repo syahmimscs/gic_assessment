@@ -26,7 +26,7 @@ const CafeForm = () => {
   }, [location.search]);
 
   const fetchCafeDetails = (id) => {
-    axios.get(`http://localhost:5001/cafe/${id}`)
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}:5001/cafe/${id}`)
       .then(response => {
         const cafe = response.data;
         setCafeId(cafe.id);
@@ -96,7 +96,7 @@ const CafeForm = () => {
   };
 
   const handleUpdateCafe = (formData) => {
-    axios.put(`http://localhost:5001/cafe`, formData, {
+    axios.put(`${process.env.REACT_APP_BACKEND_URL}:5001/cafe`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }  // Ensure correct content type
     })
     .then(() => {
@@ -108,7 +108,7 @@ const CafeForm = () => {
   };
 
   const handleAddCafe = (formData) => {
-    axios.post('http://localhost:5001/cafe', formData, {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}:5001/cafe`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' }  // Ensure correct content type
     })
     .then(() => {

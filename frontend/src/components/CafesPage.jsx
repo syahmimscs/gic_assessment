@@ -22,7 +22,7 @@ const CafesPage = () => {
   const fetchCafes = () => {
     setIsLoading(true);
     axios
-      .get('http://localhost:5001/cafes')
+      .get(`${process.env.REACT_APP_BACKEND_URL}:5001/cafes`)
       .then((response) => {
         setAllCafes(response.data);  // Store all cafes
         setCafes(response.data);     // Initially display all cafes
@@ -132,7 +132,7 @@ const CafesPage = () => {
 
   const deleteCafe = (id) => {
     axios
-      .delete(`http://localhost:5001/cafe/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}:5001/cafe/${id}`)
       .then(() => {
         setCafes(cafes.filter((cafe) => cafe.id !== id));
       })
