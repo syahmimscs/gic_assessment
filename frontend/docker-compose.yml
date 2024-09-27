@@ -8,7 +8,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL} # Make sure to set this in your .env file or locally
+      - VITE_APP_BACKEND_URL=${VITE_APP_BACKEND_URL} # Make sure to set this in your .env file or locally
     volumes:
       - .:/app
       - /app/node_modules # Avoid overriding node_modules
