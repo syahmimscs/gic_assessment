@@ -1,3 +1,4 @@
+import os
 from app.utils.db import db
 from app.models.models import Cafe, Employee
 from datetime import datetime
@@ -13,17 +14,25 @@ def generate_employee_id():
 def generate_phone_number():
     return random.choice(['8', '9']) + ''.join(random.choices(string.digits, k=7))
 
+# Helper function to read an image and return its binary data
+def read_image_as_binary(image_path):
+    with open(image_path, 'rb') as image_file:
+        return image_file.read()
+
 def seed_data():
     # Seed 10 cafes
     cafes = []
+    image_binary = read_image_as_binary(f"static/uploads/favicon.jpg")
     for i in range(10):
+        # Use a placeholder binary image data or provide actual image files
+        
         cafes.append(
             Cafe(
                 id=str(uuid.uuid4()), 
                 name=f"Cafe {i+1}", 
                 description=f"A cozy place to have coffee {i+1}", 
-                location=random.choice(["New York", "San Francisco", "Los Angeles", "Chicago", "Miami"]),
-                logo=f"https://example.com/logo{i+1}.png"
+                location=random.choice(["Singapore", "Singapore Central", "Singapore East", "Singapore West"]),
+                logo=image_binary  # Store as binary data
             )
         )
 

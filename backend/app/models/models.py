@@ -15,7 +15,7 @@ class Cafe(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     location = db.Column(db.String(100), nullable=False)
-    logo = db.Column(db.String(255), nullable=True)
+    logo = db.Column(db.LargeBinary, nullable=True)
     employees = db.relationship('Employee', backref='cafe', lazy=True)
 
     @validates('id')
@@ -30,7 +30,6 @@ class Cafe(db.Model):
             'name': self.name,
             'description': self.description,
             'location': self.location,
-            'logo': self.logo,
             'employees_count': len(self.employees)  # Return employee count
         }
 

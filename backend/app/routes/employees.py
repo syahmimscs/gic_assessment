@@ -83,7 +83,6 @@ def create_employee():
     
     return jsonify(new_employee.to_dict()), 201
 
-# Update an existing employee
 @employees_blueprint.route('/employee/<employee_id>', methods=['PUT', 'OPTIONS'])
 @cross_origin()  # Enable CORS for this route
 def update_employee(employee_id):
@@ -98,11 +97,11 @@ def update_employee(employee_id):
     if 'name' in data:
         employee.name = data['name']
     
-    if 'email_address' in data and not validate_email(data['email_address']):
-        return jsonify({"message": "Invalid email format"}), 400
+    if 'email_address' in data and validate_email(data['email_address']):
+        employee.email_address = data['email_address']
     
-    if 'phone_number' in data and not validate_phone(data['phone_number']):
-        return jsonify({"message": "Invalid phone number format"}), 400
+    if 'phone_number' in data and validate_phone(data['phone_number']):
+        employee.phone_number = data['phone_number']
     
     if 'gender' in data:
         employee.gender = data['gender']
@@ -110,9 +109,8 @@ def update_employee(employee_id):
     if 'cafe_id' in data:
         # Find the cafe by ID
         cafe = db.session.query(Cafe).filter_by(id=data['cafe_id']).first()
-        if not cafe:
-            return jsonify({"message": "Café not found"}), 404
-        employee.cafe_id = cafe.id
+        if cafe:
+            employee.cafe_id = cafe.id
     
     try:
         db.session.commit()

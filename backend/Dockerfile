@@ -14,5 +14,11 @@ COPY . .
 # Expose the port your Flask app runs on
 EXPOSE 5001
 
-# Run both the Flask app and seed the database
-CMD ["sh", "-c", "python main.py & sleep 5 && python seeds.py"]
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /app/entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
+# Set the entrypoint to run the script
+ENTRYPOINT ["/app/entrypoint.sh"]
