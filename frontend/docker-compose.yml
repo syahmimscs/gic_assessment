@@ -1,17 +1,14 @@
 version: '3'
-
 services:
   frontend:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "80:5173"  # Map local port 80 to container port 3000
     environment:
-      - VITE_APP_BACKEND_URL=${VITE_APP_BACKEND_URL} # Make sure to set this in your .env file or locally
+      - VITE_APP_BACKEND_URL=${VITE_APP_BACKEND_URL} # Set backend URL via .env
     volumes:
-      - .:/app
+      - .:/app  # Mount local directory into the container for live updates
       - /app/node_modules # Avoid overriding node_modules
-    # command: npm run dev # If you want to run in dev mode
-    # Or for production
-    command: npm run build && serve -s build
+    command: npm run dev  # Run the app in development mode

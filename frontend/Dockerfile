@@ -1,4 +1,4 @@
-# Use a newer official node image as the base (Node 20)
+# Use an official node image as the base
 FROM node:20-alpine
 
 # Set the working directory in the container
@@ -11,14 +11,8 @@ RUN npm install
 # Copy the rest of the application
 COPY . .
 
-# Build the frontend for production
-RUN npm run build
+# Expose the development port (React typically runs on 3000 in dev mode)
+EXPOSE 5173
 
-# Install a simple static file server to serve the build directory
-RUN npm install -g serve
-
-# Expose the frontend port (React typically runs on 3000)
-EXPOSE 3000
-
-# Serve the static build files
-CMD ["serve", "-s", "build", "-l", "3000"]
+# Start the app in development mode (using npm run dev)
+CMD ["npm", "run", "dev"]
