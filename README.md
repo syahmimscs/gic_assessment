@@ -172,3 +172,22 @@ This will run the frontend on `http://localhost:3000` (or another available port
 This Café Management System is ready for use with its deployed version running on DigitalOcean. The codebase is optimized for production and includes clean folder structures, reusability of components, and good practices for state management using Tanstack Query.
 
 ---
+
+## Live Application
+
+The live version of the **Café Management System** is running on a DigitalOcean server. You can access it via the following link:
+
+[Live Application URL](http://146.190.92.159/)
+
+---
+
+### How to Access:
+
+Simply click the link above or manually enter the URL in your web browser:
+
+```
+http://146.190.92.159/
+```
+
+You should see the **Café Management System** interface, which allows you to manage cafés and employees.
+
